@@ -9,6 +9,8 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         if (file.fieldname === "reviews") {
+            
+            console.log(require("path").resolve(__dirname, "..") + "/server/upload")
             cb(null, Date.now() + "-" + file.fieldname + ".csv");
         }
     },

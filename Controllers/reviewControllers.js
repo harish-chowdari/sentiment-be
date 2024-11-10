@@ -63,7 +63,6 @@ function analyzeReviews(req, res){
     fs.createReadStream(reviewsFilePath)
         .pipe(csv())
         .on('data', (data) => {
-            console.log(data);
             // Ensure required columns are present
             if (!data['ProductId'] || !data['Summary'] || !data['UserId']) {
                 console.log("Missing required columns");
