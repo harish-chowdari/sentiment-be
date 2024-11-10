@@ -5,12 +5,10 @@ const multer = require("multer");
 //multer Storage configuration
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, require("path").resolve(__dirname, "..") + "/server/upload");
+        cb(null, require("path").resolve(__dirname, "..") + "/sentiment-be/upload");
     },
     filename: function (req, file, cb) {
         if (file.fieldname === "reviews") {
-            
-            console.log(require("path").resolve(__dirname, "..") + "/server/upload")
             cb(null, Date.now() + "-" + file.fieldname + ".csv");
         }
     },
