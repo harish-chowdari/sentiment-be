@@ -59,7 +59,7 @@ function analyzeReviews(req, res){
     let results = [];
     let sentimentCounts = { Positive: 0, Negative: 0, Neutral: 0 };
     let productSentimentCounts = {};
-
+    console.log(reviewsFilePath);
     fs.createReadStream(reviewsFilePath)
         .pipe(csv())
         .on('data', (data) => {
@@ -93,7 +93,7 @@ function analyzeReviews(req, res){
             });
         })
         .on('end', () => {
-            res.json({reviews:{
+            return res.json({reviews:{
                 total_reviews: results.length,
                 sentiment_counts: sentimentCounts,
                 product_sentiment_counts: productSentimentCounts,
@@ -101,7 +101,7 @@ function analyzeReviews(req, res){
             }});
         })
         .on('error', (err) => {
-            res.status(500).json({ error: 'Error reading the CSV file.' });
+            return res.status(500).json({ error: 'Error reading the CSV file.' });
         });
 };
 
